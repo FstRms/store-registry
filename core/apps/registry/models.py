@@ -23,6 +23,15 @@ class DayOfWeek(models.Model):
         """Show label on admin"""
         return self.name
 
+    @property
+    def day_code(self):
+        """Gets 'day of week code' to compare agains datetime module"""
+        if self.pk < 7:
+            code = self.pk - 1
+        else:
+            code = 6
+        return code
+
     class Meta:
         """Set verbose names"""
 
@@ -73,7 +82,6 @@ class Store(DateTimeTag):
     """Model related to a Store"""
 
     name = models.CharField(max_length=40, verbose_name=_("Store Name"))
-    schedule = models.ManyToManyField(Schedule, verbose_name=_("schedule"))
 
     def __str__(self):
         """Show label on admin"""
@@ -84,3 +92,20 @@ class Store(DateTimeTag):
 
         verbose_name = _("Store")
         verbose_name_plural = _("Stores")
+
+
+class StoreSchedule(DateTimeTag):
+    """Intermediary model for the many-to-many relation."""
+
+    store = models.ForeignKey(Store, verbose_name=_("store"), on_delete=models.CASCADE)
+    schedule = models.ManyToManyField(Schedule, verbose_name=_("schedule"))
+
+    def __str__(self):
+        """Show label on admin"""
+        return self.store.name
+
+    class Meta:
+        """Set verbose names"""
+
+        verbose_name = _("Store Schedule")
+        verbose_name_plural = _("Stores Schedule")

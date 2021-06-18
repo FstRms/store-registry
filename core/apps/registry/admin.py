@@ -1,7 +1,25 @@
 from django.contrib import admin
-from .models import DayOfWeek, Schedule, Store
+from .models import Schedule, Store, StoreSchedule
 
 # Register your models here.
-admin.site.register(DayOfWeek)
+
+# admin.site.register(Schedule)
+
+
+class StoreScheduleInline(admin.StackedInline):
+    """Stacked form for Store schedule"""
+
+    model = StoreSchedule
+    extra = 0
+    can_delete = False
+
+
+class StoreAdmin(admin.ModelAdmin):
+    """Store model with Schedules"""
+
+    model = Store
+    inlines = [StoreScheduleInline]
+
+
 admin.site.register(Schedule)
-admin.site.register(Store)
+admin.site.register(Store, StoreAdmin)

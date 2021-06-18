@@ -61,11 +61,26 @@ class Schedule(DateTimeTag):
 
     @property
     def short_name(self):
-        """Get shor name"""
+        """Get short name"""
         if self.end_day:
             return f"{self.start_day.name[0:3]} - {self.end_day.name[0:3]}: {self.start_time} - {self.end_time}"
         else:
             return f"{self.start_day.name[0:3]}: {self.start_time} - {self.end_time}"
+
+    @property
+    def day_range(self):
+        """Gets all days in between the schedule."""
+        if self.start_day.day_code == 6 and self.end_day.day_code == 0:
+            days = range(0, 7)
+            return list(days)
+        elif self.start_day.day_code == 6:
+            days = range(0, self.end_day.day_code + 1)
+            days_list = list(days)
+            days_list.append(6)
+            return days_list
+        else:
+            days = range(self.start_day.day_code, self.end_day.day_code + 1)
+            return list(days)
 
     def __str__(self):
         """Show label on admin"""

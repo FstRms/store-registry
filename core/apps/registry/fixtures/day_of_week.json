@@ -1,0 +1,51 @@
+[
+{
+  "model": "registry.dayofweek",
+  "pk": 1,
+  "fields": {
+    "name": "Lunes"
+  }
+},
+{
+  "model": "registry.dayofweek",
+  "pk": 2,
+  "fields": {
+    "name": "Martes"
+  }
+},
+{
+  "model": "registry.dayofweek",
+  "pk": 3,
+  "fields": {
+    "name": "Miercoles"
+  }
+},
+{
+  "model": "registry.dayofweek",
+  "pk": 4,
+  "fields": {
+    "name": "Jueves"
+  }
+},
+{
+  "model": "registry.dayofweek",
+  "pk": 5,
+  "fields": {
+    "name": "Viernes"
+  }
+},
+{
+  "model": "registry.dayofweek",
+  "pk": 6,
+  "fields": {
+    "name": "Sabado"
+  }
+},
+{
+  "model": "registry.dayofweek",
+  "pk": 7,
+  "fields": {
+    "name": "Domingo"
+  }
+}
+]
